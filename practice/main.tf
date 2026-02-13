@@ -59,3 +59,22 @@ resource "azurerm_storage_container" "data" {
   ]
 }
 
+
+resource "azurerm_storage_account" "finops-storage" {
+  name                          = "myorg007finstg"
+  resource_group_name           = azurerm_resource_group.rg.name
+  location                      = var.region
+  account_tier                  = var.environment == "prod" ? "Premium" : "Standard" 
+  account_replication_type      = "LRS"
+  public_network_access_enabled = var.environment == "dev" ? true : false
+}
+
+resource "azurerm_storage_container" "debug_container" { 
+
+  # Logic: If environment is dev, create 1. If not, create 0. 
+  count = var.environment == "dev" ? 1 : 0 
+ 
+  name                  = "debug-logs" 
+  storage_account_id  = azurerm_storage_account.finops-storage.id 
+  container_access_type = "private" 
+}

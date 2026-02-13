@@ -1,3 +1,6 @@
+variable "environment" {
+} 
+
 variable "region" {
   default = "East US"
 }
