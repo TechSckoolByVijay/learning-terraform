@@ -1,15 +1,26 @@
+
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.5"
+      version = "~> 4.6"
     }
   }
-  # Note: Add your backend {} block here if using a Remote Storage Account
+  backend "azurerm" {
+    resource_group_name  = "terraform"
+    storage_account_name = "mystatefilesimp"
+    container_name       = "tfstate"
+    key                  = "capstone.terraform.tfstate"
+  }
 }
 
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  subscription_id = "db8fcd00-4f68-42c3-8b19-947bf4d7b2c5"
-}
 
+  # Service Principal Authentication Fields
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+  tenant_id       = var.tenant_id
+}

@@ -1,0 +1,6 @@
+﻿Project,Environment,Region,VNet CIDR,Subnet Name,Subnet CIDR,CIDR Size,Total IPs,Usable IPs,Purpose,Status
+Capstone,Hub,East US,10.20.0.0/16,snet-hub-router,10.20.1.0/24,/24,256,251,NVA,Approved
+Capstone,Hub,East US,10.20.0.0/16,AzureBastionSubnet,10.20.2.0/26,/26,64,59,Bastion,Approved
+Capstone,Dev,East US,10.21.0.0/16,snet-workload,10.21.1.0/24,/24,256,251,Dev VM,Approved
+Capstone,Prod,East US,10.22.0.0/16,snet-workload,10.22.1.0/24,/24,256,251,Prod VM,Approved
+Capstone,QA (Future),East US,10.23.0.0/16,TBD,TBD,TBD,TBD,TBD,Reserved,Reserved
